@@ -30,4 +30,7 @@
   .fig text { font-size: 14.5px; } .fig text.say { font-size: 12.5px; }
   /* Projects and experience on the phone: a little smaller than the rest. */
   .proj h3 { font-size: 18px; } .proj p, .proj .checks, .proj .lnk { font-size: 14px; line-height: 1.7; } .proj .meta, .proj .tags { font-size: 12.5px; }
+  .hero.small { grid-template-columns: 1fr; } .hero.small h1 { font-size: clamp(24px, 8vw, 34px); }
+  /* The drawn circle round "creative" can reach a few px past the edge on the narrowest phones. It must not make the page scroll sideways. */
+  html, body { overflow-x: clip; }
 }

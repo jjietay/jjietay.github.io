@@ -64,7 +64,7 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 /* The star is its own part. It comes after the note in the right column, so it is always below the note. */
 .hero-r { min-width: 0; }
 .hero-r .star { position: static; display: block; width: 52px; margin: 26px 6px 0 auto; }
-.hero.small { min-height: 0; align-items: center; } .hero.small .d-cam { width: min(100%, 380px); justify-self: center; } .camwrap { position: relative; width: min(100%, 380px); justify-self: center; } .hero.small .camwrap .d-cam { width: 100%; }
+.hero.small { min-height: 0; align-items: center; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); } .hero.small h1 { font-size: clamp(30px, 4.1vw, 64px); white-space: nowrap; } .hero.small .d-cam { width: min(100%, 380px); justify-self: center; } .camwrap { position: relative; width: min(100%, 380px); justify-self: center; } .hero.small .camwrap .d-cam { width: 100%; }
 .hero.small .star { left: auto; right: -34px; top: -6px; bottom: auto; width: 44px; }
 .hero .sub + .sub { margin-top: -6px; }
 
