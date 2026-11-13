@@ -6,7 +6,7 @@ const text = DM_Mono({ subsets: ["latin"], weight: ["300", "400", "500"], variab
 const head = Space_Grotesk({ subsets: ["latin"], weight: ["500"], variable: "--font-head" });
 
 export const metadata: Metadata = {
-  title: { default: "Juen Jie Tay, embodied AI and robotics", template: "%s | Juen Jie Tay" },
+  title: { default: "Juen Jie Tay, robotics and AI", template: "%s | Juen Jie Tay" },
   description: "Juen Jie Tay builds embodied AI for real robots: a UR5e VLA comparison, an autonomous tank and RF drone detection.",
 };
 

@@ -61,7 +61,7 @@ export default function CreativePage() {
             <h1><mark>photo and video</mark><br />for people and brands</h1>
             <p className="sub">I did freelance photo and video from Oct 2024 to Jan 2026.</p>
             <p className="sub">Open a set to see the photos.</p>
-            <Link className="lnk" href="/">[ back to embodied ai ]</Link>
+            <Link className="lnk" href="/">[ back to robotics and ai ]</Link>
           </div>
           <div className="camwrap"><CamArt /><Star c="still" /></div>
         </section>
