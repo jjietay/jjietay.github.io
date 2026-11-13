@@ -30,11 +30,17 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 
 /* Top bar */
 .sk-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: nowrap; white-space: nowrap; gap: 8px clamp(14px, 2.6vw, 38px); padding: 18px var(--pad); background: color-mix(in srgb, var(--page) 92%, transparent); backdrop-filter: blur(6px); text-transform: lowercase; }
-.sk-nav .me { margin-right: auto; padding: 0 .3em; margin-left: -.3em; background: var(--slant); } /* the name always has the blue highlight */ .sk-nav .cr { margin: 0 12px 0 10px; }
+.sk-nav .me { margin-right: auto; padding: 0 .3em; margin-left: -.3em; background: var(--slant); } /* the name always has the blue highlight */
 .sk-nav a { position: relative; }
-.sk-nav a:not(.cr):hover, .sk-nav a:not(.cr)[aria-current] { background: var(--slant); }
-.sk-nav .cr::before { content: ""; position: absolute; inset: -6px -13px; border: 2px solid var(--ink); border-radius: 50%; filter: url(#wob); rotate: -4deg; transition: scale .2s var(--ease-out); }
-.sk-nav .cr:hover::before, .sk-nav .cr[aria-current]::before { background: var(--blue); z-index: -1; scale: 1.06; }
+.sk-nav a[aria-current] { background: var(--slant); }
+/* A drawn circle shows round a link only while the pointer is on it. */
+.sk-nav a:not(.me)::before { content: ""; position: absolute; inset: -6px -13px; z-index: -1; border: 2px solid var(--ink); border-radius: 50%; background: var(--blue); filter: url(#wob); rotate: -4deg; opacity: 0; scale: .92; pointer-events: none; transition: scale .2s var(--ease-out), opacity .15s var(--ease-out); }
+/* Each link has its own circle: a different shape, size and tilt, as if each one was drawn by hand. */
+.sk-nav a:nth-child(2)::before { inset: -7px -12px -5px -15px; border-radius: 46% 54% 58% 42% / 62% 44% 56% 38%; rotate: -5deg; }
+.sk-nav a:nth-child(3)::before { inset: -5px -16px -8px -11px; border-radius: 58% 42% 45% 55% / 44% 60% 40% 56%; rotate: 3deg; }
+.sk-nav a:nth-child(4)::before { inset: -9px -11px -6px -13px; border-radius: 40% 60% 52% 48% / 55% 38% 62% 45%; rotate: -8deg; }
+.sk-nav a:nth-child(5)::before { inset: -6px -14px -9px -12px; border-radius: 55% 45% 40% 60% / 48% 58% 42% 52%; rotate: 6deg; }
+@media (hover: hover) { .sk-nav a:not(.me):hover::before { opacity: 1; scale: 1.06; } }
 
 /* Text link with a drawn line */
 .lnk { position: relative; display: inline-block; align-self: flex-start; text-transform: lowercase; font-size: 16px; }
@@ -86,6 +92,9 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .leaders a::before { content: ""; position: absolute; left: 0; top: 13px; width: 13px; height: 13px; border: 2px solid currentColor; filter: url(#wob); }
 .leaders a:hover::before { background: var(--blue); }
 .leaders a:hover { background: none; color: var(--blue); }
+/* The tick in the box. It shows after the link has brought the screen to its section. */
+.leaders a::after { content: ""; position: absolute; left: 5px; top: 7px; width: 7px; height: 14px; border: solid var(--tick, var(--ink)); border-width: 0 3px 3px 0; rotate: 38deg; filter: url(#wob); opacity: 0; clip-path: inset(0 0 100% 0); transition: clip-path .25s var(--ease-out), opacity .1s; }
+.leaders a.done::before { background: var(--blue); } .note .leaders a { --tick: var(--blue); } .note .leaders a.done:not(:hover)::before { background: none; } .note .leaders a.done:hover { --tick: var(--ink); } .leaders a.done::after { opacity: 1; clip-path: inset(-4px); }
 .leaders em { font-style: normal; color: var(--mute); white-space: nowrap; }
 .note.contact { max-width: 720px; font-size: 16px; rotate: -.5deg; } .note.contact a { text-decoration: underline; text-underline-offset: 4px; }
 
@@ -158,7 +167,7 @@ video { display: block; width: 100%; max-height: 62svh; object-fit: contain; bac
 .res-note { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: calc(62px + clamp(20px, 5vh, 48px)); padding: 22px 24px; border: 2px solid var(--ink); font-size: 14px; text-transform: lowercase; }
 .res-note b { display: block; font-weight: 400; color: var(--mute); margin: 20px 0 6px; } .res-note b:first-child { margin-top: 0; }
 .res-note p { margin: 0 0 6px; overflow-wrap: anywhere; } .res-note a:hover { background: var(--slant); }
-.res-note .leaders { margin: 0; } .res-note .leaders a { padding: 6px 0 6px 26px; } .res-note .leaders a::before { top: 10px; filter: none; } .res-note .leaders a:hover { color: inherit; }
+.res-note .leaders { margin: 0; } .res-note .leaders a { padding: 6px 0 6px 26px; } .res-note .leaders a::before { top: 10px; filter: none; } .res-note .leaders a::after { top: 4px; } .res-note .leaders a:hover { color: inherit; }
 .res-top { margin-bottom: 0; }
 .res-top h1 { display: inline-block; font-size: clamp(30px, 4.2vw, 58px); letter-spacing: -.02em; margin-bottom: 10px; }
 .res-top p { margin: 0 0 10px; font-size: 16px; }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import layout from "@/content/hero-layout.json";
+import Checks from "./Checks";
 
 /** Marks a part of the first screen as movable, and gives it the saved position.
  *  The numbers come from the edit mode (the home page address with "?edit"). */
@@ -13,11 +14,12 @@ export function mv(name: string) {
 export function Nav({ here }: { here?: "resume" | "creative" }) {
   return (
     <nav className="sk-nav" aria-label="Main">
+      <Checks />
       <Link href="/" className="me">juen jie tay</Link>
       <Link href="/#projects">projects</Link>
       <Link href="/#experience">experience</Link>
       <Link href="/resume" aria-current={here === "resume" ? "page" : undefined}>resume</Link>
-      <Link href="/creative" className="cr" aria-current={here === "creative" ? "page" : undefined}>creative</Link>
+      <Link href="/creative" aria-current={here === "creative" ? "page" : undefined}>creative</Link>
     </nav>
   );
 }
