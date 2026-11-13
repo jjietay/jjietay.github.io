@@ -22,8 +22,8 @@ export default function Home() {
         <Props />
         <section className="hero">
           <div className="hero-l">
-            <h1 {...mv("heading")}><mark>robotics and ai</mark><br />for real robots</h1>
-            <p className="sub" {...mv("sub")}>I build embodied AI for real robots.<br />I am a final-year EEE student at NTU.</p>
+            <h1 {...mv("heading")}><mark>embodied ai</mark><br />for real robots</h1>
+            <p className="sub" {...mv("sub")}>I build and test AI on real hardware.<br />I am a final-year EEE student at NTU.</p>
             <a className="lnk" href="#projects" {...mv("link")}>[ see the projects ]</a>
             <div className="armwrap" {...mv("arm")}><ArmArt /></div>
           </div>
