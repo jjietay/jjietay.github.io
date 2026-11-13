@@ -1,0 +1,33 @@
+/* The phone and small-tablet version of the site: all rules for screens up to 860 px wide.
+   The laptop version is in sketch.css. A rule here replaces the laptop rule with the same name. */
+@media (max-width: 860px) {
+  .sk-nav { font-size: clamp(9.5px, 3.08vw, 13.5px); gap: 2.2vw; padding: 14px 16px; }
+ .sk-nav .cr { margin: 0 9px 0 7px; } .sk-nav .cr::before { inset: -4px -8px; }
+  .hero.small .star { right: -6px; top: -30px; width: 34px; } .camwrap { width: 250px; justify-self: start; margin-top: 30px; }
+  .hero { grid-template-columns: 1fr; min-height: 0; } .hero-l { min-height: 0; }
+  .armwrap { width: 290px; margin-top: 8px; }
+  .hero .arrow.main, .hero .c1, .hero .p1, .hero .p3, .hero .s2, .hero .z1, .sec .toc, .sec .sc { display: none; } .note.pinned { margin-top: 10px; } .hero-r .star { width: 38px; margin-top: 16px; }
+  .note { padding: 24px 22px; } .note.pinned { rotate: .6deg; padding-top: 36px; }
+  .proj, .res, .res-sec, .skills div, .res-sec dl, .doc.film { grid-template-columns: 1fr; gap: 6px; }
+  .res-meta { flex-wrap: wrap; gap: 2px 16px; }
+  .res { gap: 26px; } .res-top, .res-sheet, .res-note { grid-column: 1; grid-row: auto; } .res-note { position: relative; top: 0; margin-top: 4px; order: 1; } .res-sheet { order: 2; }
+  .proj { gap: 14px; } .res-sec dd { margin-bottom: 8px; }
+  .d-files { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .d-wall { columns: 2; column-gap: 8px; } .d-wall li { margin-bottom: 8px; }
+  .d-dlgbody { padding: 14px; } .doc.film video { max-height: 60svh; width: auto; }
+ .skillbox { height: 700px; } 
+
+  /* The type scale for the phone. Each level is clearly smaller than the level above it.
+     34 page heading, 26 section heading, 19 item heading, 15 body, 13 secondary text, 12 menu and small labels. */
+  .hero h1 { font-size: 34px; } .res-top h1 { font-size: 32px; }
+  .sec > h2 { font-size: 26px; margin-bottom: 22px; }
+  .proj h3, .doc h3 { font-size: 19px; } .res-item h3 { font-size: 17px; } .d-files span { font-size: 17px; } .d-dlg > header b { font-size: 18px; }
+  body, .hero .sub, .hero .lnk, .lnk, .proj p, .checks, .skills dd, .note.contact, .doc p, .res-top p, .res-sec p, .res-sec dd, .res-item ul { font-size: 15px; }
+  .hero .sub { font-size: clamp(12.5px, 3.85vw, 15px); }
+  .note.pinned, .res-note { font-size: 14px; }
+  .proj .meta, .doc .meta, .tags, .skills dt, .skillwrap .hint, .res-sec > h2, .res-sec dt, .res-meta, .d-files small, .note b, .res-note b, .d-dlg .x, .d-zoombar, .leaders em { font-size: 13px; }
+  .chip span { font-size: 12px; }
+  .fig text { font-size: 14.5px; } .fig text.say { font-size: 12.5px; }
+  /* Projects and experience on the phone: a little smaller than the rest. */
+  .proj h3 { font-size: 18px; } .proj p, .proj .checks, .proj .lnk { font-size: 14px; line-height: 1.7; } .proj .meta, .proj .tags { font-size: 12.5px; }
+}

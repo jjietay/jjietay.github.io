@@ -4,13 +4,11 @@
 import { useEffect, useRef } from "react";
 import { ARM, HOME, createArm, solve, type ArmState } from "@/lib/arm";
 
-const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const LAG = 420; // ms
 
-/** The gripper of the hero arm, in the arm's own units. The things on the bench read it. */
-export const armHand = { x: 0, y: 0, vx: 0, vy: 0, live: false };
-
+/** The hero arm. It moves by itself on a slow path that does not repeat soon.
+ *  The gripper stays high above the bench, so it cannot touch the things there. */
 export function ArmArt() {
   const ref = useRef<SVGSVGElement>(null);
 
@@ -19,53 +17,31 @@ export function ArmArt() {
     const base = createArm(svg);
     const sparks = svg.querySelector("[data-sparks]");
     // The three short lines stay beside the wrist and fan out from it.
-    const draw = (st: ArmState, dt: number) => {
+    const draw = (st: ArmState) => {
       base(st);
-      const k = solve(st), a = k.a1 + k.a2, ph = (st.phi * Math.PI) / 180;
-      const wx = k.ex + ARM.L2 * Math.cos(a), wy = k.ey + ARM.L2 * Math.sin(a);
-      sparks?.setAttribute("transform", `translate(${(wx + 20).toFixed(1)} ${(wy - 22).toFixed(1)})`);
-      const hx = wx + 44 * Math.cos(ph), hy = wy + 44 * Math.sin(ph);
-      if (dt > 0) { armHand.vx = ((hx - armHand.x) / dt) * 1000; armHand.vy = ((hy - armHand.y) / dt) * 1000; }
-      armHand.x = hx; armHand.y = hy;
+      const k = solve(st), a = k.a1 + k.a2;
+      sparks?.setAttribute("transform", `translate(${(k.ex + ARM.L2 * Math.cos(a) + 20).toFixed(1)} ${(k.ey + ARM.L2 * Math.sin(a) - 22).toFixed(1)})`);
     };
     const s: ArmState = { ...HOME, x: 215, y: -215, phi: 80 };
-    draw(s, 0);
+    draw(s);
     if (still()) return;
-    armHand.live = true;
-    const goal = { x: s.x, y: s.y, grip: 1 };
-    let moved = -1e9, last = performance.now(), raf = 0;
-    const hero = svg.closest(".hero");
-    const onMove = (e: PointerEvent) => {
-      const m = svg.getScreenCTM();
-      if (!m) return;
-      // The pointer controls the arm in the first screen and a short way into "projects".
-      // Lower than that, the arm moves by itself.
-      if (hero && e.clientY > hero.getBoundingClientRect().bottom + 190) { moved = -1e9; return; }
-      moved = performance.now();
-      const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
-      // The gripper stays at the right of the base. To the left of it, the arm would have to flip over.
-      goal.x = clamp(p.x, 45, 400); goal.y = clamp(p.y, -400, -16);
-    };
-    const onDown = () => { goal.grip = 0; };
-    const onUp = () => { goal.grip = 1; };
+    const t0 = Math.random() * 1e5;
+    let last = performance.now(), raf = 0;
     const tick = (now: number) => {
-      const dt = Math.min(50, now - last); last = now;
-      if (now - moved > 2600) { // no pointer: move slowly without it
-        goal.x = 215 + 120 * Math.sin(now / 2300); goal.y = -220 + 90 * Math.sin(now / 1500);
-      }
+      const dt = Math.min(50, now - last), t = now + t0; last = now;
+      // Three slow waves with different periods give a path that looks random.
+      // The tool point stays between y = -330 and y = -95. The things on the bench end at y = -30.
+      const gx = 215 + 95 * Math.sin(t / 2300) + 45 * Math.sin(t / 3700 + 1.3) + 20 * Math.sin(t / 900);
+      const gy = -212 + 70 * Math.sin(t / 1500 + 0.6) + 35 * Math.sin(t / 4100) + 12 * Math.sin(t / 700 + 2);
       const k = 1 - Math.exp(-dt / LAG);
-      s.x += (goal.x - s.x) * k; s.y += (goal.y - s.y) * k;
+      s.x += (gx - s.x) * k; s.y += (Math.min(gy, -95) - s.y) * k;
       s.phi = 80 + (s.x - 190) * 0.055;
-      s.grip += (goal.grip - s.grip) * (1 - Math.exp(-dt / 90));
-      draw(s, dt);
+      s.grip = 0.6 + 0.4 * Math.sin(t / 1900);
+      draw(s);
       raf = requestAnimationFrame(tick);
     };
-    addEventListener("pointermove", onMove); addEventListener("pointerdown", onDown); addEventListener("pointerup", onUp);
     raf = requestAnimationFrame(tick);
-    return () => {
-      armHand.live = false; cancelAnimationFrame(raf);
-      removeEventListener("pointermove", onMove); removeEventListener("pointerdown", onDown); removeEventListener("pointerup", onUp);
-    };
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const { L1, L2, SY } = ARM;

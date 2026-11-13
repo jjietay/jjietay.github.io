@@ -44,10 +44,9 @@ function useFig(make: Make) {
   return ref;
 }
 
-const Box = ({ label, hint, children, r, box = "0 0 480 250" }: { label: string; hint: string; children: React.ReactNode; r: React.RefObject<SVGSVGElement | null>; box?: string }) => (
+const Box = ({ label, children, r, box = "0 0 480 250" }: { label: string; children: React.ReactNode; r: React.RefObject<SVGSVGElement | null>; box?: string }) => (
   <figure className="figbox">
     <svg ref={r} className="fig" viewBox={box} role="img" aria-label={label}>{children}</svg>
-    <figcaption>{hint}</figcaption>
   </figure>
 );
 
@@ -134,7 +133,7 @@ const makeVla: Make = (svg, ptr) => {
 export function FigVla() {
   const r = useFig(makeVla);
   return (
-    <Box r={r} box="0 -32 480 282" label="A drawn robot arm moves an orange to a tray" hint="hold the mouse button to grip the orange. release it over the tray">
+    <Box r={r} box="0 -32 480 282" label="A drawn robot arm moves an orange to a tray">
       <g className="wobg">
         <path className="k t" d="M28 -22h214v38H78l-16 15 3-15H28z" />
         <path className="k" d="M20 219H460M286 192l8 27h52l8-27M133 219v-14h34v14M150 205V185" />
@@ -224,7 +223,7 @@ const makeTank: Make = (svg, ptr) => {
 export function FigTank() {
   const r = useFig(makeTank);
   return (
-    <Box r={r} label="A drawn tank robot drives round obstacles with lidar rays" hint="the lidar turns and marks the walls. your pointer steers the tank">
+    <Box r={r} label="A drawn tank robot drives round obstacles with lidar rays">
       <path className="ray fan" data-a="fan" /><path className="ray" data-a="rays" />
       <g className="wobg">
         <path className="k" d="M22 22H458V228H22z" />
@@ -273,7 +272,7 @@ const makeSentinel: Make = (svg, ptr) => {
 export function FigSentinel() {
   const r = useFig(makeSentinel);
   return (
-    <Box r={r} label="A drawn drone in the sky makes camera, RF and audio signals rise" hint="move your pointer into the sky to fly the drone">
+    <Box r={r} label="A drawn drone in the sky makes camera, RF and audio signals rise">
       <g className="wobg">
         <path className="k" d="M22 22H250V228H22z" />
         <path className="k t" d="M44 196c14-12 26-12 38 0s26 12 38 0M150 58c8-10 22-10 28 0 12-4 22 6 16 16h-52c-8-6-2-18 8-16z" />
@@ -313,7 +312,7 @@ const makeClay: Make = (svg, ptr) => {
 export function FigClay() {
   const r = useFig(makeClay);
   return (
-    <Box r={r} label="A drawn clay ball hops through the steps script, check, voice and video" hint="click to send the clay ball to the next step">
+    <Box r={r} label="A drawn clay ball hops through the steps script, check, voice and video">
       <g className="wobg">
         {[75, 185, 295, 405].map((x, i) => (
           <g key={x}>
@@ -359,7 +358,7 @@ const makeGraph: Make = (svg, ptr) => {
 export function FigGraph() {
   const r = useFig(makeGraph);
   return (
-    <Box r={r} label="A drawn graph of linked notes that moves away from the pointer" hint="move your pointer over the notes">
+    <Box r={r} label="A drawn graph of linked notes that moves away from the pointer">
       <g className="wobg">
         <path className="k t" data-a="edges" />
         {N.map(([x, y], i) => <circle key={i} data-n="" className="k w" cx={x} cy={y} r="6.5" />)}
@@ -414,7 +413,7 @@ const makeSpectro: Make = (svg, ptr) => {
 export function FigSpectro() {
   const r = useFig(makeSpectro);
   return (
-    <Box r={r} label="Two drawn RF spectrograms, for 2.4 GHz and 5.8 GHz, with drone signals that hop" hint="move your pointer over a band to fly a drone there">
+    <Box r={r} label="Two drawn RF spectrograms, for 2.4 GHz and 5.8 GHz, with drone signals that hop">
       <g className="wobg">
         {PX.map((x) => Array.from({ length: ROWS * COLS }, (_, i) => (
           <rect key={`${x}-${i}`} data-c="" x={x + (i % COLS) * CW + 0.8} y={PY + Math.floor(i / COLS) * CH + 0.8} width={CW - 1.6} height={CH - 1.6} style={{ fill: "var(--blue)", opacity: 0 }} />

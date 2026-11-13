@@ -14,6 +14,8 @@
   --paper: var(--page); --orange: var(--page); --yellow: var(--blue);
 }
 html { background: var(--page); scroll-behavior: smooth; scroll-padding-top: 76px; }
+/* No single word alone on the last line of a paragraph or a heading. */
+p, li, dd, dt, figcaption { text-wrap: pretty; } h1, h2, h3 { text-wrap: balance; }
 body { margin: 0; color: var(--ink); font: 400 15px/1.65 var(--f-text); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
@@ -27,8 +29,8 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .tape { background: linear-gradient(178.6deg, transparent 16%, var(--blue) 16% 90%, transparent 90%); padding: 0 .2em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 
 /* Top bar */
-.sk-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 8px clamp(14px, 2.6vw, 38px); padding: 18px var(--pad); background: color-mix(in srgb, var(--page) 92%, transparent); backdrop-filter: blur(6px); text-transform: lowercase; }
-.sk-nav .me { margin-right: auto; } .sk-nav .cr { margin: 0 12px 0 10px; }
+.sk-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: nowrap; white-space: nowrap; gap: 8px clamp(14px, 2.6vw, 38px); padding: 18px var(--pad); background: color-mix(in srgb, var(--page) 92%, transparent); backdrop-filter: blur(6px); text-transform: lowercase; }
+.sk-nav .me { margin-right: auto; padding: 0 .3em; margin-left: -.3em; background: var(--slant); } /* the name always has the blue highlight */ .sk-nav .cr { margin: 0 12px 0 10px; }
 .sk-nav a { position: relative; }
 .sk-nav a:not(.cr):hover, .sk-nav a:not(.cr)[aria-current] { background: var(--slant); }
 .sk-nav .cr::before { content: ""; position: absolute; inset: -6px -13px; border: 2px solid var(--ink); border-radius: 50%; filter: url(#wob); rotate: -4deg; transition: scale .2s var(--ease-out); }
@@ -62,7 +64,9 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 /* The star is its own part. It comes after the note in the right column, so it is always below the note. */
 .hero-r { min-width: 0; }
 .hero-r .star { position: static; display: block; width: 52px; margin: 26px 6px 0 auto; }
-.hero.small { min-height: 0; align-items: center; } .hero.small .d-cam { width: min(100%, 380px); justify-self: center; } .hero.small .star { right: 5%; bottom: 14%; width: 46px; }
+.hero.small { min-height: 0; align-items: center; } .hero.small .d-cam { width: min(100%, 380px); justify-self: center; } .camwrap { position: relative; width: min(100%, 380px); justify-self: center; } .hero.small .camwrap .d-cam { width: 100%; }
+.hero.small .star { left: auto; right: -34px; top: -6px; bottom: auto; width: 44px; }
+.hero .sub + .sub { margin-top: -6px; }
 
 /* Saved positions of the parts of the first screen, for wide screens. */
 @media (min-width: 861px) { .hero [data-mv] { translate: var(--mx, 0) var(--my, 0); rotate: var(--mr, 0deg); scale: var(--ms, 1); } }
@@ -87,7 +91,8 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 
 /* Sections */
 .sec { position: relative; padding: clamp(36px, 7vh, 72px) var(--pad); }
-.sec .down { position: static; display: inline-block; width: 56px; margin-left: 22px; rotate: 62deg; translate: 0 14px; } .sec .sp { right: calc(var(--pad) + 30px); top: 62px; width: 20px; } .sec .sc { right: var(--pad); top: 54px; width: 84px; } .sec .ss { position: static; display: inline-block; width: 30px; margin-left: 20px; } .sec .sz { right: calc(var(--pad) + 40px); top: 70px; width: 24px; rotate: 10deg; } .sec .toc { left: min(780px, 62%); top: 150px; width: 110px; rotate: 172deg; }
+.sec .down { position: static; display: inline-block; width: 56px; margin-left: 22px; rotate: 62deg; translate: 0 14px; } .sec .sp { right: calc(var(--pad) + 30px); top: 62px; width: 20px; } .sec .sc { right: var(--pad); top: 54px; width: 84px; } .sec .ss { position: static; display: inline-block; width: 30px; margin-left: 30px; translate: 0 -8px; } .sec .sz { right: calc(var(--pad) + 40px); top: 46px; width: 24px; rotate: 10deg; } .sec .toc { left: min(780px, 62%); top: 150px; width: 110px; rotate: 172deg; }
+#experience, #skills { padding-top: clamp(14px, 2.5vh, 28px); }
 .sec > h2 { display: inline-block; margin-bottom: 30px; font-size: clamp(24px, 2.6vw, 36px); letter-spacing: -.02em; }
 .proj { position: relative; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(20px, 4vw, 64px); padding: 30px 0 34px; }
 .proj::before { content: ""; position: absolute; inset: 0 0 auto 0; border-top: 2px solid var(--ink); }
@@ -99,7 +104,7 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .tags li { position: relative; padding: 2px 11px; } .tags li::before { content: ""; position: absolute; inset: 0; border: 1.6px solid var(--ink); border-radius: 40% 60% 50% 50% / 60% 50% 60% 50%; filter: url(#wob); }
 .checks + .figbox { margin-top: 34px; }
 .figbox { position: relative; margin: 6px 0 24px; width: min(100%, 600px); }
-.figbox::before { content: ""; position: absolute; inset: -8px -8px 24px -8px; border: 2px solid var(--ink); filter: url(#wob); rotate: -.5deg; pointer-events: none; }
+.figbox::before { content: ""; position: absolute; inset: -8px; border: 2px solid var(--ink); filter: url(#wob); rotate: -.5deg; pointer-events: none; }
 .figbox figcaption { margin-top: 12px; font-size: 13px; color: var(--mute); text-transform: lowercase; }
 .fig { display: block; width: 100%; height: auto; touch-action: pan-y; cursor: crosshair; user-select: none; }
 .fig .wobg { filter: url(#wob); }
@@ -171,20 +176,7 @@ video { display: block; width: 100%; max-height: 62svh; object-fit: contain; bac
 .res-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin: 4px 0 10px; color: var(--mute); } .res-meta span:last-child { flex: none; white-space: nowrap; }
 .res-item ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; line-height: 1.65; max-width: 96ch; }
 
-@media (max-width: 860px) {
-  .sk-nav { font-size: 13px; gap: 8px 12px; padding: 14px var(--pad); } .sk-nav .cr { margin: 0 10px 0 8px; } .sk-nav .cr::before { inset: -4px -9px; }
-  .hero { grid-template-columns: 1fr; min-height: 0; } .hero-l { min-height: 0; }
-  .armwrap { width: 290px; margin-top: 8px; }
-  .hero .arrow.main, .hero .c1, .hero .p1, .hero .p3, .hero .s2, .hero .z1, .sec .toc, .sec .sc { display: none; } .note.pinned { margin-top: 10px; } .hero-r .star { width: 38px; margin-top: 16px; }
-  .note { padding: 24px 22px; } .note.pinned { rotate: .6deg; padding-top: 36px; }
-  .proj, .res, .res-sec, .skills div, .res-sec dl, .doc.film { grid-template-columns: 1fr; gap: 6px; }
-  .res-meta { flex-wrap: wrap; gap: 2px 16px; }
-  .res { gap: 26px; } .res-top, .res-sheet, .res-note { grid-column: 1; grid-row: auto; } .res-note { position: relative; top: 0; margin-top: 4px; order: 1; } .res-sheet { order: 2; }
-  .proj { gap: 14px; } .res-sec dd { margin-bottom: 8px; }
-  .d-files { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
-  .d-wall { columns: 2; column-gap: 8px; } .d-wall li { margin-bottom: 8px; }
-  .d-dlgbody { padding: 14px; } .doc.film video { max-height: 60svh; width: auto; }
-}
+
 
 /* Edit mode for the first screen (address ends with ?edit). */
 .hero.editing [data-mv] { cursor: move; pointer-events: auto; outline: 1.5px dashed #e0559a; outline-offset: 4px; touch-action: none; user-select: none; }
@@ -201,7 +193,7 @@ main { position: relative; }
 
 /* Skills: drawn icons that you can drag, throw and push. */
 .skillwrap { margin-bottom: 34px; }
-.skillbox { position: relative; width: min(100%, 720px); height: 400px; overflow: hidden; touch-action: pan-y; user-select: none; }
+.skillbox { position: relative; width: min(100%, 720px); height: 360px; overflow: hidden; touch-action: pan-y; user-select: none; }
 .skillbox::before { content: ""; position: absolute; inset: 1px; border: 2.4px solid var(--ink); filter: url(#wob); pointer-events: none; }
 .skillbox.grabbing, .skillbox.grabbing .chip { cursor: grabbing; }
 .chip { position: absolute; left: 0; top: 0; width: 88px; height: 88px; align-content: center; display: grid; justify-items: center; cursor: grab; touch-action: none; will-change: transform; }
@@ -210,4 +202,3 @@ main { position: relative; }
 .chip svg .b { fill: var(--blue); } .chip svg .w { fill: var(--page); } .chip svg .i { fill: var(--ink); stroke: none; } .chip svg .t { stroke-width: 1.5; }
 .chip span { margin-top: -2px; padding: 0 4px; background: color-mix(in srgb, var(--page) 80%, transparent); font-size: 12px; line-height: 1.3; white-space: nowrap; }
 .skillwrap .hint { margin: 10px 0 0; font-size: 13px; color: var(--mute); }
-@media (max-width: 860px) { .skillbox { height: 780px; } }

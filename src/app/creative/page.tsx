@@ -59,11 +59,11 @@ export default function CreativePage() {
         <section className="hero small" data-snap="">
           <div className="hero-l">
             <h1><mark>photo and video</mark><br />clients and street</h1>
-            <p className="sub">I did freelance photo and video from Oct 2024 to Jan 2026.<br />Open a set to see the photos.</p>
+            <p className="sub">I did freelance photo and video from Oct 2024 to Jan 2026.</p>
+            <p className="sub">Open a set to see the photos.</p>
             <Link className="lnk" href="/">[ back to robotics and ai ]</Link>
           </div>
-          <CamArt />
-          <Star c="still" />
+          <div className="camwrap"><CamArt /><Star c="still" /></div>
         </section>
         {GROUPS.map((g) => (
           <section className="sec" key={g}><h2><mark>{g}</mark></h2><Files items={group(g)} /></section>
