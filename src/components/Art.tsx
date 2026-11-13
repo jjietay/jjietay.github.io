@@ -34,9 +34,12 @@ export function ArmArt() {
     armHand.live = true;
     const goal = { x: s.x, y: s.y, grip: 1 };
     let moved = -1e9, last = performance.now(), raf = 0;
+    const hero = svg.closest(".hero");
     const onMove = (e: PointerEvent) => {
       const m = svg.getScreenCTM();
       if (!m) return;
+      // Below the first screen (from "projects" down), the arm moves by itself.
+      if (hero && e.clientY > hero.getBoundingClientRect().bottom) { moved = -1e9; return; }
       moved = performance.now();
       const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
       // The gripper stays at the right of the base. To the left of it, the arm would have to flip over.
