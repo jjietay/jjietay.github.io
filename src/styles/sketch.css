@@ -32,7 +32,7 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .sk-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: nowrap; white-space: nowrap; gap: 8px clamp(14px, 2.6vw, 38px); padding: 18px var(--pad); background: color-mix(in srgb, var(--page) 92%, transparent); backdrop-filter: blur(6px); text-transform: lowercase; }
 .sk-nav .me { margin-right: auto; padding: 0 .3em; margin-left: -.3em; background: var(--slant); } /* the name always has the blue highlight */
 .sk-nav a { position: relative; }
-.sk-nav a[aria-current] { background: var(--slant); }
+.sk-nav a[aria-current], .sk-nav a.here { background: var(--slant); }
 /* A drawn circle shows round a link only while the pointer is on it. */
 .sk-nav a:not(.me)::before { content: ""; position: absolute; inset: -6px -13px; z-index: -1; border: 2px solid var(--ink); border-radius: 50%; background: var(--blue); filter: url(#wob); rotate: -4deg; opacity: 0; scale: .92; pointer-events: none; transition: scale .2s var(--ease-out), opacity .15s var(--ease-out); }
 /* Each link has its own circle: a different shape, size and tilt, as if each one was drawn by hand. */
