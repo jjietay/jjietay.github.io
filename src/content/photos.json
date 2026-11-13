@@ -1,0 +1,602 @@
+[
+ {
+  "group": "Weddings",
+  "name": "Gabriel & YL",
+  "slug": "gabriel-yl",
+  "photos": [
+   {
+    "src": "/photos/client/gabriel-yl/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/gabriel-yl/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/gabriel-yl/03.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/gabriel-yl/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/gabriel-yl/05.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/gabriel-yl/06.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/gabriel-yl/07.webp",
+    "w": 1200,
+    "h": 1800
+   }
+  ]
+ },
+ {
+  "group": "Weddings",
+  "name": "BQ & A",
+  "slug": "bq-a",
+  "photos": [
+   {
+    "src": "/photos/client/bq-a/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/bq-a/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/bq-a/03.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/bq-a/04.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/bq-a/05.webp",
+    "w": 1200,
+    "h": 1800
+   }
+  ]
+ },
+ {
+  "group": "Brands",
+  "name": "YERA",
+  "slug": "yera",
+  "photos": [
+   {
+    "src": "/photos/client/yera/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/03.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/yera/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/05.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/06.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/07.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/yera/08.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/09.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/10.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/11.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/12.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/13.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/14.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/15.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/16.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/17.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/18.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/yera/19.webp",
+    "w": 1200,
+    "h": 1800
+   }
+  ]
+ },
+ {
+  "group": "Brands",
+  "name": "YE Tradition",
+  "slug": "ye-tradition",
+  "photos": [
+   {
+    "src": "/photos/client/ye-tradition/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/03.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/05.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/06.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/07.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/08.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/09.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/10.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/11.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/12.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/13.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/ye-tradition/14.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/15.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/16.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ye-tradition/17.webp",
+    "w": 1200,
+    "h": 1800
+   }
+  ]
+ },
+ {
+  "group": "Brands",
+  "name": "PR Salon",
+  "slug": "pr-salon",
+  "photos": [
+   {
+    "src": "/photos/client/pr-salon/01.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/02.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/03.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/04.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/05.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/06.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/07.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/08.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/09.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/10.webp",
+    "w": 1800,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pr-salon/11.webp",
+    "w": 1800,
+    "h": 1800
+   }
+  ]
+ },
+ {
+  "group": "Brands",
+  "name": "Acai Spot",
+  "slug": "acai-spot",
+  "photos": [
+   {
+    "src": "/photos/client/acai-spot/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/acai-spot/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/acai-spot/03.webp",
+    "w": 1800,
+    "h": 1200
+   }
+  ]
+ },
+ {
+  "group": "Events",
+  "name": "ABCC",
+  "slug": "abcc",
+  "photos": [
+   {
+    "src": "/photos/client/abcc/01.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/02.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/03.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/abcc/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/abcc/05.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/06.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/07.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/08.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/09.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/10.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/11.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/12.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/13.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/14.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/15.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/16.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/17.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/abcc/18.webp",
+    "w": 1800,
+    "h": 1200
+   }
+  ]
+ },
+ {
+  "group": "Events",
+  "name": "Pacific Licensing",
+  "slug": "pacific-licensing",
+  "photos": [
+   {
+    "src": "/photos/client/pacific-licensing/01.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/pacific-licensing/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/03.webp",
+    "w": 1800,
+    "h": 1200
+   },
+   {
+    "src": "/photos/client/pacific-licensing/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/05.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/06.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/07.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/08.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/09.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/pacific-licensing/10.webp",
+    "w": 1200,
+    "h": 1800
+   }
+  ]
+ },
+ {
+  "group": "Events",
+  "name": "NTU Efinity",
+  "slug": "ntu-efinity",
+  "photos": [
+   {
+    "src": "/photos/client/ntu-efinity/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-efinity/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-efinity/03.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-efinity/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-efinity/05.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-efinity/06.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-efinity/07.webp",
+    "w": 1800,
+    "h": 1200
+   }
+  ]
+ },
+ {
+  "group": "Events",
+  "name": "NTU UOC Bash",
+  "slug": "ntu-uoc-bash",
+  "photos": [
+   {
+    "src": "/photos/client/ntu-uoc-bash/01.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/02.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/03.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/04.webp",
+    "w": 1200,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/05.webp",
+    "w": 1440,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/06.webp",
+    "w": 1440,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/07.webp",
+    "w": 1440,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/08.webp",
+    "w": 1440,
+    "h": 1800
+   },
+   {
+    "src": "/photos/client/ntu-uoc-bash/09.webp",
+    "w": 1440,
+    "h": 1800
+   }
+  ]
+ }
+]

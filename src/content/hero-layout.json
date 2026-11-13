@@ -1,0 +1,80 @@
+{
+ "heading": {
+  "dx": 0,
+  "dy": 0,
+  "rot": 0,
+  "scale": 1
+ },
+ "sub": {
+  "dx": 0,
+  "dy": 0,
+  "rot": 0,
+  "scale": 1
+ },
+ "link": {
+  "dx": 0,
+  "dy": 0,
+  "rot": 0,
+  "scale": 1
+ },
+ "arm": {
+  "dx": 0,
+  "dy": 0,
+  "rot": 0,
+  "scale": 1
+ },
+ "note": {
+  "dx": -0.61,
+  "dy": 0.1,
+  "rot": 0,
+  "scale": 1
+ },
+ "arrow-main": {
+  "dx": 1.74,
+  "dy": 10.37,
+  "rot": -9,
+  "scale": 1
+ },
+ "star": {
+  "dx": -4.34,
+  "dy": 7.85,
+  "rot": 0,
+  "scale": 1
+ },
+ "star-s2": {
+  "dx": -0.8,
+  "dy": -2.86,
+  "rot": 0,
+  "scale": 1
+ },
+ "coil-c1": {
+  "dx": 16.3,
+  "dy": 2.89,
+  "rot": 0,
+  "scale": 1
+ },
+ "plus-p1": {
+  "dx": -1.17,
+  "dy": 0.67,
+  "rot": 0,
+  "scale": 1
+ },
+ "plus-p2": {
+  "dx": -3.82,
+  "dy": 3.28,
+  "rot": 0,
+  "scale": 1
+ },
+ "plus-p3": {
+  "dx": -2.96,
+  "dy": -16,
+  "rot": 0,
+  "scale": 1
+ },
+ "zig-z1": {
+  "dx": -14.59,
+  "dy": 5.47,
+  "rot": 0,
+  "scale": 1
+ }
+}
