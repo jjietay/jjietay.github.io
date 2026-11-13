@@ -4,11 +4,16 @@
 import { useEffect, useRef } from "react";
 import { ARM, HOME, createArm, solve, type ArmState } from "@/lib/arm";
 
+const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const LAG = 420; // ms
+// The lowest tool point with the pointer. The fingers end 22 below it, and the things on the bench end at y = -30.
+const LOW = -60;
 
-/** The hero arm. It moves by itself on a slow path that does not repeat soon.
- *  The gripper stays high above the bench, so it cannot touch the things there. */
+/** The hero arm. On the laptop version it follows the pointer, and a press closes
+ *  the gripper. Without a pointer, and always on the phone version, it moves by
+ *  itself on a slow path that does not repeat soon. The gripper stays above the
+ *  things on the bench, so it cannot touch them. */
 export function ArmArt() {
   const ref = useRef<SVGSVGElement>(null);
 
@@ -26,7 +31,23 @@ export function ArmArt() {
     draw(s);
     if (still()) return;
     const t0 = Math.random() * 1e5;
-    let last = performance.now(), raf = 0;
+    let last = performance.now(), raf = 0, moved = -1e9, press = false, near = false;
+    // The laptop version starts at 861 px, the same limit as in mobile.css.
+    const wide = matchMedia("(min-width: 861px)"), hero = svg.closest(".hero");
+    const goal = { x: s.x, y: s.y };
+    const onMove = (e: PointerEvent) => {
+      const m = svg.getScreenCTM();
+      if (!m || !wide.matches) { near = false; return; }
+      // The pointer controls the arm in the first screen and a short way into "projects".
+      // Lower than that, the arm moves by itself.
+      if (hero && e.clientY > hero.getBoundingClientRect().bottom + 190) { moved = -1e9; near = false; return; }
+      moved = performance.now(); near = true;
+      const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+      // The gripper stays at the right of the base. To the left of it, the arm would have to flip over.
+      goal.x = clamp(p.x, 45, 400); goal.y = clamp(p.y, -400, LOW);
+    };
+    const onDown = () => { press = true; if (near) moved = performance.now(); };
+    const onUp = () => { press = false; };
     const tick = (now: number) => {
       const dt = Math.min(50, now - last), t = now + t0; last = now;
       // Three slow waves with different periods give a path that looks random.
@@ -34,14 +55,27 @@ export function ArmArt() {
       const gx = 215 + 95 * Math.sin(t / 2300) + 45 * Math.sin(t / 3700 + 1.3) + 20 * Math.sin(t / 900);
       const gy = -212 + 70 * Math.sin(t / 1500 + 0.6) + 35 * Math.sin(t / 4100) + 12 * Math.sin(t / 700 + 2);
       const k = 1 - Math.exp(-dt / LAG);
-      s.x += (gx - s.x) * k; s.y += (Math.min(gy, -95) - s.y) * k;
+      const auto = 0.6 + 0.4 * Math.sin(t / 1900);
+      if (wide.matches && (now - moved < 2600 || (press && near))) { // the pointer moved or pressed a short time ago: follow it
+        s.x += (goal.x - s.x) * k; s.y += (goal.y - s.y) * k;
+        s.grip += ((press ? 0 : 1) - s.grip) * (1 - Math.exp(-dt / 90));
+      } else {
+        s.x += (gx - s.x) * k; s.y += (Math.min(gy, -95) - s.y) * k;
+        // Back from the pointer, the gripper goes smoothly to its own rhythm, then follows it exactly.
+        s.grip = Math.abs(auto - s.grip) < 0.02 ? auto : s.grip + (auto - s.grip) * (1 - Math.exp(-dt / 90));
+      }
       s.phi = 80 + (s.x - 190) * 0.055;
-      s.grip = 0.6 + 0.4 * Math.sin(t / 1900);
       draw(s);
       raf = requestAnimationFrame(tick);
     };
+    addEventListener("pointermove", onMove); addEventListener("pointerdown", onDown);
+    addEventListener("pointerup", onUp); addEventListener("pointercancel", onUp);
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      removeEventListener("pointermove", onMove); removeEventListener("pointerdown", onDown);
+      removeEventListener("pointerup", onUp); removeEventListener("pointercancel", onUp);
+    };
   }, []);
 
   const { L1, L2, SY } = ARM;
