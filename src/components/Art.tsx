@@ -7,13 +7,16 @@ import { ARM, HOME, createArm, solve, type ArmState } from "@/lib/arm";
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const LAG = 420; // ms
-// The lowest tool point with the pointer. The fingers end 22 below it, and the things on the bench end at y = -30.
-const LOW = -60;
+const LOW = -16; // the lowest tool point with the pointer: low enough to hit the things on the bench
 
-/** The hero arm. On the laptop version it follows the pointer, and a press closes
- *  the gripper. Without a pointer, and always on the phone version, it moves by
- *  itself on a slow path that does not repeat soon. The gripper stays above the
- *  things on the bench, so it cannot touch them. */
+/** The gripper of the hero arm, in the arm's own units. The things on the bench read it.
+ *  `live` is true only on the laptop version, so the things stay in place on the phone version. */
+export const armHand = { x: 0, y: 0, vx: 0, vy: 0, live: false };
+
+/** The hero arm. On the laptop version it follows the pointer, a press closes the
+ *  gripper, and the gripper can hit the things on the bench. Without a pointer,
+ *  and always on the phone version, it moves by itself on a slow path that does
+ *  not repeat soon and stays high above the bench. */
 export function ArmArt() {
   const ref = useRef<SVGSVGElement>(null);
 
@@ -22,13 +25,17 @@ export function ArmArt() {
     const base = createArm(svg);
     const sparks = svg.querySelector("[data-sparks]");
     // The three short lines stay beside the wrist and fan out from it.
-    const draw = (st: ArmState) => {
+    const draw = (st: ArmState, dt: number) => {
       base(st);
-      const k = solve(st), a = k.a1 + k.a2;
-      sparks?.setAttribute("transform", `translate(${(k.ex + ARM.L2 * Math.cos(a) + 20).toFixed(1)} ${(k.ey + ARM.L2 * Math.sin(a) - 22).toFixed(1)})`);
+      const k = solve(st), a = k.a1 + k.a2, ph = (st.phi * Math.PI) / 180;
+      const wx = k.ex + ARM.L2 * Math.cos(a), wy = k.ey + ARM.L2 * Math.sin(a);
+      sparks?.setAttribute("transform", `translate(${(wx + 20).toFixed(1)} ${(wy - 22).toFixed(1)})`);
+      const hx = wx + 44 * Math.cos(ph), hy = wy + 44 * Math.sin(ph);
+      if (dt > 0) { armHand.vx = ((hx - armHand.x) / dt) * 1000; armHand.vy = ((hy - armHand.y) / dt) * 1000; }
+      armHand.x = hx; armHand.y = hy;
     };
     const s: ArmState = { ...HOME, x: 215, y: -215, phi: 80 };
-    draw(s);
+    draw(s, 0);
     if (still()) return;
     const t0 = Math.random() * 1e5;
     let last = performance.now(), raf = 0, moved = -1e9, press = false, near = false;
@@ -65,14 +72,15 @@ export function ArmArt() {
         s.grip = Math.abs(auto - s.grip) < 0.02 ? auto : s.grip + (auto - s.grip) * (1 - Math.exp(-dt / 90));
       }
       s.phi = 80 + (s.x - 190) * 0.055;
-      draw(s);
+      armHand.live = wide.matches;
+      draw(s, dt);
       raf = requestAnimationFrame(tick);
     };
     addEventListener("pointermove", onMove); addEventListener("pointerdown", onDown);
     addEventListener("pointerup", onUp); addEventListener("pointercancel", onUp);
     raf = requestAnimationFrame(tick);
     return () => {
-      cancelAnimationFrame(raf);
+      armHand.live = false; cancelAnimationFrame(raf);
       removeEventListener("pointermove", onMove); removeEventListener("pointerdown", onDown);
       removeEventListener("pointerup", onUp); removeEventListener("pointercancel", onUp);
     };
