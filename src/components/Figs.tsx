@@ -144,7 +144,7 @@ export function FigVla() {
         <path className="k" data-a="grip" />
         <circle className="k b" cx="150" cy="185" r="10" /><circle className="k b" data-a="j1" r="8" /><circle className="k b" data-a="j2" r="6.5" />
       </g>
-      <text className="say" x="135" y="1.5" textAnchor="middle">“put the orange in the tray”</text>
+      <text className="say" x="135" y="1.5" textAnchor="middle">&quot;put the orange in the tray&quot;</text>
     </Box>
   );
 }
@@ -155,17 +155,34 @@ const WAY = [[400, 190], [240, 58], [80, 60], [90, 190], [420, 60]];
 const makeTank: Make = (svg, ptr) => {
   const q = get(svg), tank = { x: 80, y: 180, h: 0 }, pts: { x: number; y: number; born: number }[] = [];
   let wp = 0, ang = 0;
+  const side = OBS.map(() => 0); // for each obstacle: 0 = free, 1 or -1 = the side that the tank passes on
   return (now, dt) => {
     const s = dt / 1000;
     let goal = WAY[wp];
     if (ptr.inside) goal = [clamp(ptr.x, 40, 440), clamp(ptr.y, 40, 210)];
     else if (Math.hypot(goal[0] - tank.x, goal[1] - tank.y) < 22) { wp = (wp + 1) % WAY.length; goal = WAY[wp]; }
+    for (const [cx, cy, r] of OBS) { // the tank cannot stop inside an obstacle
+      const ox = goal[0] - cx, oy = goal[1] - cy, od = Math.hypot(ox, oy) || 1;
+      if (od < r + 22) goal = [clamp(cx + (ox / od) * (r + 22), 42, 438), clamp(cy + (oy / od) * (r + 22), 42, 208)];
+    }
     const gx = goal[0] - tank.x, gy = goal[1] - tank.y, gd = Math.hypot(gx, gy) || 1;
     let dx = gx / gd, dy = gy / gd;
-    for (const [cx, cy, r] of OBS) {
+    OBS.forEach(([cx, cy, r], n) => {
       const vx = tank.x - cx, vy = tank.y - cy, v = Math.hypot(vx, vy) || 1, gap = v - r;
-      if (gap < 44) { const k = ((44 - gap) / 44) * 2; dx += (vx / v) * k - (vy / v) * k * 0.6; dy += (vy / v) * k + (vx / v) * k * 0.6; }
-    }
+      if (gap >= 48) { side[n] = 0; return; }
+      const nx = vx / v, ny = vy / v, k = ((48 - gap) / 48) * 2;
+      // Push away from the obstacle. If the obstacle is between the tank and the goal, also go round it.
+      dx += nx * k; dy += ny * k;
+      if (-(nx * gx + ny * gy) / gd < 0.1) { side[n] = 0; return; }
+      if (!side[n]) {
+        // Choose the side to pass on: the side nearer to the goal, but never a side where
+        // the gap between the obstacle and the wall is too narrow for the tank.
+        const open = (sg: number) => { const qx = cx - ny * sg * (r + 20), qy = cy + nx * sg * (r + 20); return qx > 42 && qx < 438 && qy > 42 && qy < 208; };
+        const want = -ny * gx + nx * gy >= 0 ? 1 : -1;
+        side[n] = open(want) ? want : open(-want) ? -want : want;
+      }
+      dx += -ny * side[n] * k * 1.3; dy += nx * side[n] * k * 1.3;
+    });
     let dh = Math.atan2(dy, dx) - tank.h;
     dh = Math.atan2(Math.sin(dh), Math.cos(dh));
     tank.h += clamp(dh, -2.6 * s, 2.6 * s);

@@ -1,7 +1,7 @@
 // Taken from Documents/Work/Resume/Juen_Jie_Tay_Resume.docx.
 export const resume = {
   headline: "Robotics, embodied AI, computer vision",
-  profile: "Final-year NTU EEE student. I graduate in May 2027 and focus on [[embodied AI and robotics]]. My experience includes ROS 2 robot development, a UR5e manipulation FYP, and RF deep learning and CPU edge deployment at ST Engineering.",
+  profile: "I am a final-year EEE student at NTU. I graduate in May 2027 and focus on [[embodied AI and robotics]]. My experience includes ROS 2 robot development, a UR5e manipulation final year project, and RF deep learning and CPU edge deployment at ST Engineering.",
   skills: [
     ["Languages", "Python, C++"],
     ["ML", "PyTorch, LeRobot, Hugging Face Transformers, Claude API, faster-whisper, ONNX, OpenVINO"],
@@ -28,7 +28,7 @@ export const resume = {
       when: "Aug 2026 to present",
       points: [
         "Designed a [[UR5e comparison]] between a modular OWLv2 and LLM pipeline and an end-to-end SmolVLA policy. Both use shared speech input, robot control, camera access and safety checks.",
-        "Implementing command clarification, motion safety checks and failure tracing for the modular pipeline. Integrated SmolVLA through LeRobot, with [[230+ unit tests]] across the project.",
+        "Implementing command clarification, motion safety checks and failure tracing for the modular pipeline. Integrated SmolVLA through LeRobot, with [[more than 230 unit tests]] across the project.",
         "Built an evaluation suite of 5 task tiers (pick-and-place, pouring, ambiguity, changing world state and generalisation) with 20 seeded layouts per tier and held-out phrasings, frozen before tuning either pipeline.",
       ],
     },
@@ -47,7 +47,7 @@ export const resume = {
       title: "Knowledge Space",
       org: "Obsidian, Quartz, Cloudflare Pages. Personal project",
       when: "Jan 2026 to present",
-      points: ["Built a public digital garden of 240 notes across 10 fields with Obsidian, Quartz and Cloudflare Pages."],
+      points: ["Built a public notes site of 240 notes across 10 fields with Obsidian, Quartz and Cloudflare Pages."],
     },
   ],
   education: {

@@ -58,8 +58,8 @@ export default function CreativePage() {
       <main>
         <section className="hero small" data-snap="">
           <div className="hero-l">
-            <h1><mark>photo and video</mark><br />the creative side</h1>
-            <p className="sub">Freelance photo and video, Oct 2024 to Jan 2026.<br />Open a set to see the photos.</p>
+            <h1><mark>photo and video</mark><br />clients and street</h1>
+            <p className="sub">I did freelance photo and video from Oct 2024 to Jan 2026.<br />Open a set to see the photos.</p>
             <Link className="lnk" href="/">[ back to robotics and ai ]</Link>
           </div>
           <CamArt />
