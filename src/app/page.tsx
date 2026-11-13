@@ -59,7 +59,10 @@ export default function Home() {
               <div>
                 <p><T>{p.text}</T></p>
                 {FIGS[p.id]}
-                {p.href && <a className="lnk" href={p.href} target="_blank" rel="noreferrer">[ {p.linkLabel} ]</a>}
+                <p className="links">
+                  {p.href && <a className="lnk" href={p.href} target="_blank" rel="noreferrer">[ {p.linkLabel} ]</a>}
+                  {p.more && <a className="lnk" href={p.more.href} target="_blank" rel="noreferrer">[ {p.more.label} ]</a>}
+                </p>
               </div>
             </article>
           ))}

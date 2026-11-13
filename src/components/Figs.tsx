@@ -44,9 +44,9 @@ function useFig(make: Make) {
   return ref;
 }
 
-const Box = ({ label, hint, children, r }: { label: string; hint: string; children: React.ReactNode; r: React.RefObject<SVGSVGElement | null> }) => (
+const Box = ({ label, hint, children, r, box = "0 0 480 250" }: { label: string; hint: string; children: React.ReactNode; r: React.RefObject<SVGSVGElement | null>; box?: string }) => (
   <figure className="figbox">
-    <svg ref={r} className="fig" viewBox="0 0 480 250" role="img" aria-label={label}>{children}</svg>
+    <svg ref={r} className="fig" viewBox={box} role="img" aria-label={label}>{children}</svg>
     <figcaption>{hint}</figcaption>
   </figure>
 );
@@ -134,9 +134,9 @@ const makeVla: Make = (svg, ptr) => {
 export function FigVla() {
   const r = useFig(makeVla);
   return (
-    <Box r={r} label="A drawn robot arm moves an orange to a tray" hint="hold the mouse button to grip the orange. release it over the tray">
+    <Box r={r} box="0 -32 480 282" label="A drawn robot arm moves an orange to a tray" hint="hold the mouse button to grip the orange. release it over the tray">
       <g className="wobg">
-        <path className="k t" d="M28 20h214v38H78l-16 15 3-15H28z" />
+        <path className="k t" d="M28 -22h214v38H78l-16 15 3-15H28z" />
         <path className="k" d="M20 219H460M286 192l8 27h52l8-27M133 219v-14h34v14M150 205V185" />
         <circle className="k b" data-a="orange" r="9" />
         <path className="k" data-a="o1" style={{ strokeWidth: 18 }} /><path className="fl" data-a="f1" style={{ strokeWidth: 12 }} />
@@ -144,7 +144,7 @@ export function FigVla() {
         <path className="k" data-a="grip" />
         <circle className="k b" cx="150" cy="185" r="10" /><circle className="k b" data-a="j1" r="8" /><circle className="k b" data-a="j2" r="6.5" />
       </g>
-      <text x="135" y="43.5" textAnchor="middle">“put the orange in the tray”</text>
+      <text className="say" x="135" y="1.5" textAnchor="middle">“put the orange in the tray”</text>
     </Box>
   );
 }

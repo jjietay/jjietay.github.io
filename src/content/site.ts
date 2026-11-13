@@ -20,6 +20,7 @@ export type Project = {
   tags: string[];
   href?: string;
   linkLabel?: string;
+  more?: { href: string; label: string }; // a second link, for example the code
 };
 
 export const projects: Project[] = [
@@ -52,10 +53,11 @@ export const projects: Project[] = [
     title: "SENTINEL drone detection",
     kind: "Multimodal",
     when: "2026",
-    text: "Detects drone presence from [[camera, RF and audio]] with a multimodal LLM. I built it for IE4422 at NTU. The repository has a replay demo.",
+    text: "Detects drone presence from [[camera, RF and audio]] with a multimodal LLM. I built it for IE4422 at NTU. The demo is a replay that runs in the browser.",
     tags: ["Multimodal LLM", "RF", "Audio", "Vision"],
-    href: "https://github.com/jjietay/sentinel-demo",
-    linkLabel: "Open the demo repository",
+    href: "https://jjietay.github.io/sentinel-demo/",
+    linkLabel: "Open the demo",
+    more: { href: "https://github.com/jjietay/sentinel-demo", label: "Open the code" },
   },
   {
     id: "P-04",

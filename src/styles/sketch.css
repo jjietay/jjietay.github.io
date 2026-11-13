@@ -4,6 +4,8 @@
 :root {
   --ink: #432f2e; --blue: #c4dae8; --butter: #feefb8; --page: #fff;
   --mute: #8f7b76; --dot: #c8b8b1;
+  /* the highlight behind a link under the pointer: a band with a small tilt, left side lower, like the headings */
+  --slant: linear-gradient(177.6deg, transparent 9%, var(--blue) 9% 91%, transparent 91%);
   --f-text: var(--font-text), ui-monospace, Menlo, monospace;
   --f-head: var(--font-head), system-ui, sans-serif;
   --pad: clamp(18px, 4vw, 56px);
@@ -28,14 +30,14 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .sk-nav { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 8px clamp(14px, 2.6vw, 38px); padding: 18px var(--pad); background: color-mix(in srgb, var(--page) 92%, transparent); backdrop-filter: blur(6px); text-transform: lowercase; }
 .sk-nav .me { margin-right: auto; } .sk-nav .cr { margin: 0 12px 0 10px; }
 .sk-nav a { position: relative; }
-.sk-nav a:not(.cr):hover, .sk-nav a:not(.cr)[aria-current] { background: var(--blue); }
+.sk-nav a:not(.cr):hover, .sk-nav a:not(.cr)[aria-current] { background: var(--slant); }
 .sk-nav .cr::before { content: ""; position: absolute; inset: -6px -13px; border: 2px solid var(--ink); border-radius: 50%; filter: url(#wob); rotate: -4deg; transition: scale .2s var(--ease-out); }
 .sk-nav .cr:hover::before, .sk-nav .cr[aria-current]::before { background: var(--blue); z-index: -1; scale: 1.06; }
 
 /* Text link with a drawn line */
 .lnk { position: relative; display: inline-block; align-self: flex-start; text-transform: lowercase; font-size: 16px; }
 .lnk::after { content: ""; position: absolute; inset: auto -4px -6px -4px; border-bottom: 2.4px solid currentColor; filter: url(#wob); rotate: -.5deg; }
-.lnk:hover { background: var(--blue); }
+.lnk:hover { background: var(--slant); }
 
 /* Drawings */
 .d-art { display: block; width: 100%; height: auto; filter: url(#wob); overflow: visible; }
@@ -70,7 +72,7 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .note::before { content: ""; position: absolute; inset: -2px; border: 3px solid var(--ink); filter: url(#wob); pointer-events: none; }
 .note b { display: block; font-weight: 400; color: var(--mute); margin-bottom: 6px; text-transform: lowercase; }
 .note p { margin: 0; } .note p + p { margin-top: 8px; }
-.note a:hover { background: var(--blue); color: var(--ink); }
+.note a:hover { background: var(--slant); color: var(--ink); }
 .note.pinned { margin-top: clamp(40px, 10vh, 110px); padding-top: 44px; rotate: calc(1.2deg + var(--mr, 0deg)); font-size: clamp(14px, 1.15vw, 17px); text-transform: lowercase; transition: rotate .3s var(--ease-out); }
 .note.pinned:hover { rotate: .4deg; }
 .pin { position: absolute; left: 50%; top: -12px; width: 24px; height: 24px; border-radius: 50%; border: 3px solid var(--ink); background: var(--blue); filter: url(#wob); }
@@ -91,6 +93,7 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .proj::before { content: ""; position: absolute; inset: 0 0 auto 0; border-top: 2px solid var(--ink); }
 .proj h3 { font-size: 22px; line-height: 1.25; letter-spacing: -.015em; }
 .proj .meta, .doc .meta { margin: 8px 0 14px; color: var(--mute); }
+.proj .links { display: flex; flex-wrap: wrap; gap: 14px 30px; margin: 0; } .proj .links:empty { display: none; }
 .proj p { margin: 0 0 18px; max-width: 74ch; font-size: 16px; line-height: 1.75; }
 .tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 9px; font-size: 14px; }
 .tags li { position: relative; padding: 2px 11px; } .tags li::before { content: ""; position: absolute; inset: 0; border: 1.6px solid var(--ink); border-radius: 40% 60% 50% 50% / 60% 50% 60% 50%; filter: url(#wob); }
@@ -104,7 +107,7 @@ h1 mark::before, h2 mark::before { content: ""; position: absolute; inset: .38em
 .fig .fl { fill: none; stroke: var(--page); stroke-linecap: round; }
 .fig .w { fill: var(--page); } .fig .b { fill: var(--blue); } .fig .i { fill: var(--ink); }
 .fig .ray { fill: none; stroke: var(--mute); stroke-width: 1.3; } .fig .fan { stroke-width: .8; opacity: .45; } .fig .hit { fill: none; stroke: var(--blue); stroke-width: 6.5; stroke-linecap: round; }
-.fig text { font: 12px var(--f-text); fill: var(--mute); }
+.fig text { font: 12px var(--f-text); fill: var(--mute); } .fig text.say { fill: var(--ink); }
 .fig [data-a^="t"], .fig [data-a="tick"], .fig [data-a="drone"] { transition: opacity .2s; }
 video { display: block; width: 100%; max-height: 62svh; object-fit: contain; background: var(--ink); border: 3px solid var(--ink); }
 .checks { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; max-width: 86ch; font-size: 16px; line-height: 1.7; }
@@ -129,7 +132,7 @@ video { display: block; width: 100%; max-height: 62svh; object-fit: contain; bac
 .d-dlg::backdrop, .d-zoom::backdrop { background: color-mix(in srgb, var(--ink) 60%, transparent); }
 .d-dlg > header { flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 14px 22px; border-bottom: 2px dotted var(--dot); text-transform: lowercase; }
 .d-dlg > header b { font: 500 20px var(--f-head); letter-spacing: -.015em; }
-.d-dlg .x, .d-zoombar button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-transform: lowercase; cursor: pointer; } .d-dlg .x:hover, .d-zoombar button:hover { background: var(--blue); color: var(--ink); }
+.d-dlg .x, .d-zoombar button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-transform: lowercase; cursor: pointer; } .d-dlg .x:hover, .d-zoombar button:hover { background: var(--slant); color: var(--ink); }
 .d-dlgbody { overflow: auto; overscroll-behavior: contain; padding: 22px; }
 .doc h3 { font-size: 22px; letter-spacing: -.015em; } .doc p { margin: 0 0 16px; max-width: 70ch; font-size: 16px; line-height: 1.7; }
 .doc.film { display: grid; grid-template-columns: minmax(0, 300px) 1fr; gap: 22px; align-items: start; } .doc.film video { aspect-ratio: 9 / 16; }
@@ -149,12 +152,12 @@ video { display: block; width: 100%; max-height: 62svh; object-fit: contain; bac
 /* The side panel: a plain box with straight lines. It stays in one place from the start, so it does not move and then stop. */
 .res-note { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: calc(62px + clamp(20px, 5vh, 48px)); padding: 22px 24px; border: 2px solid var(--ink); font-size: 14px; text-transform: lowercase; }
 .res-note b { display: block; font-weight: 400; color: var(--mute); margin: 20px 0 6px; } .res-note b:first-child { margin-top: 0; }
-.res-note p { margin: 0 0 6px; overflow-wrap: anywhere; } .res-note a:hover { background: var(--blue); }
+.res-note p { margin: 0 0 6px; overflow-wrap: anywhere; } .res-note a:hover { background: var(--slant); }
 .res-note .leaders { margin: 0; } .res-note .leaders a { padding: 6px 0 6px 26px; } .res-note .leaders a::before { top: 10px; filter: none; } .res-note .leaders a:hover { color: inherit; }
 .res-top { margin-bottom: 0; }
 .res-top h1 { display: inline-block; font-size: clamp(30px, 4.2vw, 58px); letter-spacing: -.02em; margin-bottom: 10px; }
 .res-top p { margin: 0 0 10px; font-size: 16px; }
-.res-links { display: flex; flex-wrap: wrap; gap: 6px 18px; } .res-links a { text-decoration: underline; text-underline-offset: 4px; } .res-links a:hover { background: var(--blue); }
+.res-links { display: flex; flex-wrap: wrap; gap: 6px 18px; } .res-links a { text-decoration: underline; text-underline-offset: 4px; } .res-links a:hover { background: var(--slant); }
 .res-sec { position: relative; display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 24px 0; }
 .res-sec::before { content: ""; position: absolute; inset: 0 0 auto 0; border-top: 2px solid var(--ink); }
 .res-sec > h2 { font: 400 15px var(--f-text); color: var(--mute); }
