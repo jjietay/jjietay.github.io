@@ -45,6 +45,7 @@ export const projects: Project[] = [
     tags: ["ROS 2", "C++", "SLAM", "Nav2", "Foxglove"],
     href: "https://jjietay.github.io/robotic_tank_project/",
     linkLabel: "Open the project page",
+    more: { href: "https://github.com/jjietay/robotic_tank_project", label: "Open the code" },
   },
   {
     id: "P-03",
@@ -57,7 +58,7 @@ export const projects: Project[] = [
     tags: ["Multimodal LLM", "RF", "Audio", "Vision"],
     href: "https://jjietay.github.io/sentinel-demo/",
     linkLabel: "Open the demo",
-    more: { href: "https://github.com/jjietay/sentinel-demo", label: "Open the code" },
+    more: { href: "https://github.com/xena1t/SENTINEL", label: "Open the code" },
   },
   {
     id: "P-04",
@@ -70,6 +71,7 @@ export const projects: Project[] = [
     tags: ["Claude Code", "Agents", "Video"],
     href: "https://jjietay.github.io/clayducation/",
     linkLabel: "Open the Clayducation gallery",
+    more: { href: "https://github.com/jjietay/clayducation", label: "Open the code" },
   },
   {
     id: "P-05",
