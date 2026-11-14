@@ -11,7 +11,7 @@ export const person = {
 
 export type Project = {
   id: string;
-  fig: "vla" | "lidar" | "signals" | "clay" | "graph";
+  fig: "vla" | "lidar" | "signals" | "onset" | "clay" | "graph";
   figCaption: string;
   title: string;
   kind: string;
@@ -62,6 +62,18 @@ export const projects: Project[] = [
   },
   {
     id: "P-04",
+    fig: "onset",
+    figCaption: "Where the answer goes wrong",
+    title: "Hallucination onset tagger",
+    kind: "NLP",
+    when: "2026",
+    text: "For EE6405 at NTU, my group finds the [[first wrong token]] in an answer from SmolLM2. A BiLSTM-CRF reads 20,480 hidden-state values for each token and tags where the hallucination begins. We found a one-character shift in the labels and fixed it. We also rebuilt the test split so that no source text is in both training and test. The demo is a replay of a saved run that runs in the browser.",
+    tags: ["PyTorch", "BiLSTM-CRF", "SmolLM2", "Qwen", "PR-AUC"],
+    href: "https://jjietay.github.io/hallucination-onset-demo/",
+    linkLabel: "Open the demo",
+  },
+  {
+    id: "P-05",
     fig: "clay",
     figCaption: "Script, check, voice, video",
     title: "Clayducation",
@@ -74,7 +86,7 @@ export const projects: Project[] = [
     more: { href: "https://github.com/jjietay/clayducation", label: "Open the code" },
   },
   {
-    id: "P-05",
+    id: "P-06",
     fig: "graph",
     figCaption: "Linked notes",
     title: "Knowledge Space",

@@ -20,7 +20,7 @@ const AT: Record<string, string> = {
   "gabriel-yl": "50% 30%", "bq-a": "50% 45%", yera: "50% 75%", "ye-tradition": "50% 40%", "pr-salon": "50% 50%", "acai-spot": "50% 50%",
   abcc: "36% 50%", "pacific-licensing": "50% 50%", "ntu-efinity": "50% 60%", "ntu-uoc-bash": "50% 50%",
 };
-const clay = projects.find((p) => p.id === "P-04")!;
+const clay = projects.find((p) => p.id === "P-05")!;
 
 export default function CreativePage() {
   const group = (g: string): FileItem[] => shoots.filter((s) => s.group === g).map((s) => ({

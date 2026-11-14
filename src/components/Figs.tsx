@@ -288,7 +288,61 @@ export function FigSentinel() {
   );
 }
 
-/* 4. The clay ball hops through the four steps of the engine. */
+/* 4. A reader moves along the answer token by token. The onset score of each
+      token grows as the reader passes it, and the first wrong digit gets B-HALL.
+      The pointer moves the reader. */
+const TOK = ["Done", "in", "1", "8", "7", "9", "."];
+const TAG = ["O", "O", "O", "O", "B-HALL", "I-HALL", "O"];
+const SCORE = [0.07, 0.08, 0.1, 0.14, 0.92, 0.3, 0.06];
+const ONSET = 4;
+const TX = TOK.map((_, i) => 60 + 60 * i), BASE = 108, TALL = 70;
+const makeOnset: Make = (svg, ptr) => {
+  const q = get(svg);
+  let pos = -0.6, hold = 0;
+  return (_t, dt) => {
+    if (ptr.inside) {
+      pos += (clamp((ptr.x - 30) / 60, -0.6, 6.6) - pos) * Math.min(1, dt / 160);
+      hold = 0;
+    } else if (pos < 6.6) pos = Math.min(6.6, pos + dt / 520);
+    else if ((hold += dt) > 2200) { pos = -0.6; hold = 0; }
+    q("rd").setAttribute("transform", `translate(${f(clamp(30 + 60 * pos, 60, 420))} 0)`);
+    q("rd").style.opacity = pos < -0.3 ? "0" : "1";
+    TOK.forEach((_, i) => {
+      const h = TALL * SCORE[i] * clamp((pos - i) * 2, 0, 1);
+      const bar = q(`s${i}`);
+      bar.setAttribute("y", f(BASE - h)); bar.setAttribute("height", f(h));
+      q(`t${i}`).style.opacity = pos > i + 0.3 ? "1" : "0";
+    });
+    const found = pos > ONSET + 0.3;
+    q("ring").style.opacity = found ? "1" : "0";
+    q("verdict").textContent = found ? "onset: the 7 in 1879 (true year 1889)" : "no onset yet";
+  };
+};
+export function FigOnset() {
+  const r = useFig(makeOnset);
+  return (
+    <Box r={r} label="A tagger reads an answer token by token and marks the first wrong digit as the start of a hallucination">
+      <g className="wobg">
+        <path className="k t" d={`M24 ${BASE}H456`} />
+        {TX.map((x, i) => (
+          <g key={x}>
+            <rect className={i === ONSET ? "k i" : "k b"} data-a={`s${i}`} x={x - 12} width="24" y={BASE} height="0" />
+            <path className="k t" d={`M${x - 26} 124h52v34h-52z`} />
+          </g>
+        ))}
+        <path className="k" data-a="ring" transform={`translate(${TX[ONSET] - 360} 0)`} d="M360 115c22 0 38 11 38 26s-16 26-38 26-38-11-38-26 16-28 42-26" />
+        <path className="k" data-a="rd" d="M-24 172h48M-24 172l-4 6M24 172l4 6" />
+      </g>
+      <text x="24" y="24">q: when was the eiffel tower finished?</text>
+      <text x="24" y="52">onset score</text>
+      {TOK.map((w, i) => <text key={i} className="say" x={TX[i]} y="146" textAnchor="middle">{w}</text>)}
+      {TAG.map((g, i) => <text key={i} className={TAG[i] !== "O" ? "say" : undefined} data-a={`t${i}`} x={TX[i]} y="200" textAnchor="middle">{g}</text>)}
+      <text x="24" y="236" data-a="verdict">no onset yet</text>
+    </Box>
+  );
+}
+
+/* 5. The clay ball hops through the four steps of the engine. */
 const STEPS = ["script", "check", "voice", "video"];
 const makeClay: Make = (svg, ptr) => {
   const q = get(svg), X = [75, 185, 295, 405], TOP = 110;
@@ -328,7 +382,7 @@ export function FigClay() {
   );
 }
 
-/* 5. Linked notes that move away from the pointer. */
+/* 6. Linked notes that move away from the pointer. */
 const N = [[60, 60], [130, 120], [70, 180], [190, 50], [220, 150], [160, 205], [280, 95], [300, 200], [340, 40], [370, 140], [420, 85], [430, 195], [250, 30], [110, 30]];
 const E = [[0, 1], [1, 2], [1, 3], [1, 4], [2, 5], [4, 5], [3, 6], [4, 6], [6, 8], [6, 9], [4, 7], [7, 9], [9, 10], [9, 11], [8, 10], [3, 12], [12, 8], [0, 13], [13, 3], [7, 11]];
 const makeGraph: Make = (svg, ptr) => {
@@ -367,7 +421,7 @@ export function FigGraph() {
   );
 }
 
-/* 6. Two RF spectrograms (waterfalls). Time moves down (new rows appear at the top). A drone link shows as
+/* 7. Two RF spectrograms (waterfalls). Time moves down (new rows appear at the top). A drone link shows as
       short hopping bursts, and the model output changes to "yes". */
 const COLS = 24, ROWS = 14, PX = [22, 254], PY = 36, CW = 8.5, CH = 11.7;
 const makeSpectro: Make = (svg, ptr) => {

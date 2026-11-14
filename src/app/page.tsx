@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Arrange from "@/components/Arrange";
 import { ArmArt } from "@/components/Art";
-import { FigClay, FigGraph, FigSentinel, FigSpectro, FigTank, FigVla } from "@/components/Figs";
+import { FigClay, FigGraph, FigOnset, FigSentinel, FigSpectro, FigTank, FigVla } from "@/components/Figs";
 import Props from "@/components/Props";
 import Skills from "@/components/Skills";
 import { Arrow, Coil, Nav, Plus, Star, Zig, mv } from "@/components/Sketch";
@@ -10,7 +10,7 @@ import { experience, person, projects } from "@/content/site";
 import { resume } from "@/content/resume";
 
 const FIGS: Record<string, React.ReactNode> = {
-  "P-01": <FigVla />, "P-02": <FigTank />, "P-03": <FigSentinel />, "P-04": <FigClay />, "P-05": <FigGraph />,
+  "P-01": <FigVla />, "P-02": <FigTank />, "P-03": <FigSentinel />, "P-04": <FigOnset />, "P-05": <FigClay />, "P-06": <FigGraph />,
 };
 const anchor = (id: string) => id.toLowerCase();
 
