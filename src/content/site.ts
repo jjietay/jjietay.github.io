@@ -71,6 +71,7 @@ export const projects: Project[] = [
     tags: ["PyTorch", "BiLSTM-CRF", "SmolLM2", "Qwen", "PR-AUC"],
     href: "https://jjietay.github.io/hallucination-onset-demo/",
     linkLabel: "Open the demo",
+    more: { href: "https://github.com/jjietay/hallucination-onset-detection", label: "Open the code" },
   },
   {
     id: "P-05",
