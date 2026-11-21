@@ -149,7 +149,9 @@ export function FigVla() {
 }
 
 /* 2. The tank drives to the pointer, round the obstacles, with its lidar on. */
-const OBS = [[150, 92, 22], [300, 160, 28], [366, 72, 16]];
+// The top-right obstacle is far enough from the top wall that the tank can pass above it.
+// Nearer to the wall, the tank can get into the gap but it cannot go through it.
+const OBS = [[150, 92, 22], [300, 160, 28], [366, 84, 16]];
 const WAY = [[400, 190], [240, 58], [80, 60], [90, 190], [420, 60]];
 const makeTank: Make = (svg, ptr) => {
   const q = get(svg), tank = { x: 80, y: 180, h: 0 }, pts: { x: number; y: number; born: number }[] = [];
@@ -169,7 +171,8 @@ const makeTank: Make = (svg, ptr) => {
     OBS.forEach(([cx, cy, r], n) => {
       const vx = tank.x - cx, vy = tank.y - cy, v = Math.hypot(vx, vy) || 1, gap = v - r;
       if (gap >= 48) { side[n] = 0; return; }
-      const nx = vx / v, ny = vy / v, k = ((48 - gap) / 48) * 2;
+      // The push becomes weaker near the goal, so that a goal next to an obstacle is not pushed out of reach.
+      const nx = vx / v, ny = vy / v, k = ((48 - gap) / 48) * 2 * Math.min(1, gd / 40);
       // Push away from the obstacle. If the obstacle is between the tank and the goal, also go round it.
       dx += nx * k; dy += ny * k;
       if (-(nx * gx + ny * gy) / gd < 0.1) { side[n] = 0; return; }
